@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Tavern Brawl Time Settings</title>
+  <link rel='stylesheet' type='text/css' href='css/slate.min.css'>
+  <script src='js/slate.min.js'></script>
+  <style>
+  .title {
+    padding: 15px 10px;
+    text-transform: uppercase;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #888888;
+    text-align: center;
+  }
+  </style>
+  </head>
+
+  <body>
+    <h1 class='title'>Tavern Brawl Time Settings</h1>
+
+    <div class='item-container'>
+      <div class='item-container-content'>
+        <div class='item'>
+          Choose the region you brawl in. This is so we can make sure the pins
+          that appear in your timeline show up at the right time.
+        </div>
+      </div>
+    </div>
+
+    <div class='item-container'>
+      <div class='item-container-header'>Region</div>
+      <div class='item-container-content'>
+        <label class='item'>
+          Americas
+          <input type="radio" class="item-radio" name="region" value="americas">
+        </label>
+        <label class='item'>
+          Europe
+          <input type="radio" class="item-radio" name="region" value="europe">
+        </label>
+        <label class='item'>
+          Taiwan/China
+          <input type="radio" class="item-radio" name="region" value="taiwan-china">
+        </label>
+        <label class='item'>
+          Korea
+          <input type="radio" class="item-radio" name="region" value="korea">
+        </label>
+      </div>
+    </div>
+
+    <div class='item-container'>
+      <div class='button-container'>
+        <input type='button' class='item-button' value='SAVE'>
+      </div>
+    </div>
+  </body>
+  <script>
+  function getConfigData() {
+    var selectedRegion = document.querySelector('input[name="region"]:checked').value;
+
+    var options = {
+      'selectedRegion': selectedRegion
+    };
+
+    // Save for next launch
+    localStorage['selectedRegion'] = options['selectedRegion'];
+
+    console.log('Got options: ' + JSON.stringify(options));
+    return options;
+  }
+
+  function getQueryParam(variable, defaultValue) {
+    var query = location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split('=');
+      if (pair[0] === variable) {
+        return decodeURIComponent(pair[1]);
+      }
+    }
+    return defaultValue || false;
+  }
+
+  var submitButton = document.querySelector('input[type=button]');
+  submitButton.addEventListener('click', function() {
+    console.log('Submit');
+
+    // Set the return URL depending on the runtime environment
+    var return_to = getQueryParam('return_to', 'pebblejs://close#');
+    document.location = return_to + encodeURIComponent(JSON.stringify(getConfigData()));
+  });
+
+  (function() {
+    // Load any previously saved configuration, if available
+    if (localStorage['selectedRegion']) {
+      var previouslySelectedOption = document.querySelector('input[value=' + localStorage['selectedRegion'] + ']');
+      previouslySelectedOption.checked = true;
+    }
+  })();
+  </script>
+</html>
