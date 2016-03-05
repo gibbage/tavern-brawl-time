@@ -69,9 +69,9 @@
     }
 
     function loadCurrentSettings() {
-      var currentRegion = getCurrentSetting('selectedRegion', 'americas');
-      var previouslySelectedOption = document.querySelector('input[value=' + currentRegion + ']');
-      previouslySelectedOption.checked = true;
+      var currentRegion = getCurrentSetting('region', 'americas');
+      var currentlySelectedOption = document.querySelector('input[value=' + currentRegion + ']');
+      currentlySelectedOption.checked = true;
     }
 
     function getQueryParam(variable, defaultValue) {
@@ -89,7 +89,7 @@
     function getConfigData() {
       var selectedRegion = document.querySelector('input[name="region"]:checked').value;
       return {
-        'selectedRegion': selectedRegion
+        region: selectedRegion
       };
     }
 
