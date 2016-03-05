@@ -79,7 +79,6 @@
 
   function getCurrentSetting(variable, defaultValue) {
     try {
-        debugger;
       var currentSettings = JSON.parse(decodeURIComponent(location.hash.substring(1)));
       return currentSettings[variable] || (defaultValue || false);
     } catch (e) {
