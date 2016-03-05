@@ -7,10 +7,9 @@ var URL = 'https://s3-us-west-2.amazonaws.com/tavern-brawl-time/current.json';
 
 Pebble.addEventListener('ready', function(e) {
   console.log('App ready!');
-  
   var region = ConfigManager.getRegion();
   TimelineManager.subscribeToTopic(region);
-  
+  ConfigManager.addOnRegionChangeListener(TimelineManager.subscribeToTopic);
 });
 
 // Loading screen

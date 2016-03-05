@@ -3,14 +3,19 @@ var CONFIG_URL = 'https://rawgit.com/gibbage/tavern-brawl-time/master/config/ind
 
 var Settings = require('settings');
 
+var onRegionChangeListeners = [];
+
 Settings.config(
   { url: CONFIG_URL },
   function onConfigWindowClose(e) {
     if (!e.failed) {
-      console.log('Region changed to "' + Settings.option('region') + '".');
-      // now update Timeline subscriptions...
+      var region = Settings.option('region');
+      console.log('Successfully updated configuration. Region changed to "' + region + '".');
+      onRegionChangeListeners.forEach(function (listener) {
+        listener(region);
+      });
     } else {
-      console.log(e.response);
+      console.error('Failed to update configuration settings', e);
     }
   }
 );
@@ -18,13 +23,22 @@ Settings.config(
 function getRegion() {
   var region = Settings.option('region');
   if (!region) {
-    console.log('No region set. Default to "' + DEFAULT_REGION + '".');
+    console.log('No region set. Defaulting to "' + DEFAULT_REGION + '".');
     region = DEFAULT_REGION;
     Settings.option('region', region);
   }
   return region;
 }
 
+function addOnRegionChangeListener(callback) {
+  if (typeof callback === 'function') {
+    console.log('Register change listener', callback.name);
+    onRegionChangeListeners.push(callback);
+  }
+  console.log('How many listeners?', onRegionChangeListeners.length);
+}
+
 module.exports = {
-  getRegion: getRegion
+  getRegion: getRegion,
+  addOnRegionChangeListener: addOnRegionChangeListener
 };
