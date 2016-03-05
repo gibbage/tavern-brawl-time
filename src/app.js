@@ -1,6 +1,7 @@
 var UI = require('ui');
 var ajax = require('ajax');
 var ConfigManager = require('./config-manager');
+var TimelineManager = require('./timeline-manager');
 
 var URL = 'https://s3-us-west-2.amazonaws.com/tavern-brawl-time/current.json';
 
@@ -8,13 +9,8 @@ Pebble.addEventListener('ready', function(e) {
   console.log('App ready!');
   
   var region = ConfigManager.getRegion();
-  console.log('Subscribe to ' + region);
-
-  Pebble.timelineSubscribe('all-users', function () {
-    console.log('Subscribed to all-users');
-  }, function (error) {
-    console.log('Error subscribing to topic: ' + error);
-  });
+  TimelineManager.subscribeToTopic(region);
+  
 });
 
 // Loading screen
