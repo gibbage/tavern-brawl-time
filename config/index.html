@@ -60,16 +60,9 @@
   <script>
   function getConfigData() {
     var selectedRegion = document.querySelector('input[name="region"]:checked').value;
-
-    var options = {
+    return {
       'selectedRegion': selectedRegion
     };
-
-    // Save for next launch
-    localStorage['selectedRegion'] = options['selectedRegion'];
-
-    console.log('Got options: ' + JSON.stringify(options));
-    return options;
   }
 
   function getQueryParam(variable, defaultValue) {
