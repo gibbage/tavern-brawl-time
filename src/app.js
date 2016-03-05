@@ -1,16 +1,23 @@
-/**
- * Welcome to Pebble.js!
- *
- * This is where you write your app.
- */
-
 var UI = require('ui');
 var ajax = require('ajax');
+var Settings = require('settings');
 
 var URL = 'https://s3-us-west-2.amazonaws.com/tavern-brawl-time/current.json';
+var CONFIG_URL = 'https://rawgit.com/gibbage/tavern-brawl-time/master/config/index.html';
+var DEFAULT_REGION = 'americas';
 
 Pebble.addEventListener('ready', function(e) {
   console.log('App ready!');
+  
+  var region = Settings.option('region');
+  if (!region) {
+    console.log('gotta default');
+    region = DEFAULT_REGION;
+    Settings.option('region', region);
+  }
+
+  console.log('Subscribe to ', region);
+  
   Pebble.timelineSubscribe('all-users', function () {
     console.log('Subscribed to all-users');
   }, function (error) {
@@ -39,5 +46,16 @@ ajax(
   },
   function(error) {
     console.log('Failed fetching Brawl data: ' + error);
+  }
+);
+
+Settings.config(
+  { url: CONFIG_URL },
+  function onConfigWindowClose(e) {
+    if (!e.failed) {
+      console.log('Region changed to "' + Settings.option('region') + '"');
+    } else {
+      console.log(e.response);
+    }
   }
 );
