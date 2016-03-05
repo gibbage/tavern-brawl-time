@@ -84,6 +84,16 @@
     return defaultValue || false;
   }
 
+  function getCurrentSetting(variable, defaultValue) {
+    try {
+        debugger;
+      var currentSettings = JSON.parse(decodeURIComponent(location.hash.substring(1)));
+      return currentSettings[variable] || (defaultValue || false);
+    } catch (e) {
+      return defaultValue || false;
+    }
+  }
+
   var submitButton = document.querySelector('input[type=button]');
   submitButton.addEventListener('click', function() {
     console.log('Submit');
@@ -95,10 +105,10 @@
 
   (function() {
     // Load any previously saved configuration, if available
-    if (localStorage['selectedRegion']) {
-      var previouslySelectedOption = document.querySelector('input[value=' + localStorage['selectedRegion'] + ']');
-      previouslySelectedOption.checked = true;
-    }
+    var currentRegion = getCurrentSetting('selectedRegion', 'americas');
+    console.log('currentRegion', currentRegion);
+    var previouslySelectedOption = document.querySelector('input[value=' + currentRegion + ']');
+    previouslySelectedOption.checked = true;
   })();
   </script>
 </html>
