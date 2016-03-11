@@ -17,9 +17,9 @@ BrawlUI.prototype = {
   showBrawlDetails: function (data) {
     var finishText = '* Ends ' + data.timeUntilFinished + '\n';
     var deckTypeText = data.type ? '* ' + data.type + '\n' : '';
-    var quoteText = data.quote ? '"' + data.quote + '"\n' : '';
+    var quoteText = data.quote ? '\n"' + data.quote + '"\n' : '';
     this.card.title(data.name);
-    this.card.body(finishText + deckTypeText + quoteText + FOOTER);
+    this.card.body(finishText + deckTypeText + quoteText + '\n' + FOOTER);
     this.card.show();
   },
   showError: function (error) {
