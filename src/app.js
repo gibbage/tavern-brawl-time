@@ -20,7 +20,7 @@ loadMainScreen(region);
 
 function loadMainScreen(region) {
   var scheduler = new BrawlScheduler(region);
-  if (!scheduler.brawlStillActive()) {
+  if (scheduler.brawlStillActive()) {
     ajax(
       {
         url: URL,
