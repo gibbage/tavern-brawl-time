@@ -24,6 +24,7 @@ ConfigManager.addOnRegionChangeListener(loadMainScreen);
 loadMainScreen(region);
 
 function loadMainScreen(region) {
+  var footer = ' (Q‘-‘)=O  O=(‘-‘Q)';
   var scheduler = new BrawlScheduler(region);
   if (scheduler.brawlStillActive()) {
     ajax(
@@ -34,8 +35,10 @@ function loadMainScreen(region) {
       function (data) {
         console.log('Successfully fetched Brawl data.', data);
         card.title(data.name);
-        var finishText = 'Ends ' + scheduler.timeUntilNextEvent();
-        card.body(finishText + '\n"' + data.quote + '"');
+        var finishText = '* Ends ' + scheduler.timeUntilNextEvent() + '\n';
+        var deckTypeText = '* ' + data.type + '\n';
+        var quoteText = '"' + data.quote + '"\n';
+        card.body(finishText + deckTypeText + quoteText + footer);
       },
       function(error) {
         console.log('Failed fetching Brawl data: ' + error);
@@ -44,6 +47,6 @@ function loadMainScreen(region) {
     );
   } else {
     card.title('Brawl finished');
-    card.body('Back ' + scheduler.timeUntilNextEvent());
+    card.body('\nBack ' + scheduler.timeUntilNextEvent() + '!\n\n' + footer);
   }
 }

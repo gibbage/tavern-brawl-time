@@ -9,7 +9,7 @@ var REGIONS = {
     start: { day: 'wednesday', hour: 21 },
     finish: { day: 'monday', hour: 5 }
   },
-  'korea': { 
+  'korea': {
     start: { day: 'wednesday', hour: 21 },
     finish: { day: 'sunday', hour: 22 }
   },
