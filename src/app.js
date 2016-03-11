@@ -35,14 +35,15 @@ function loadMainScreen(region) {
       function (data) {
         console.log('Successfully fetched Brawl data.', data);
         card.title(data.name);
+        delete data.type;
         var finishText = '* Ends ' + scheduler.timeUntilNextEvent() + '\n';
-        var deckTypeText = '* ' + data.type + '\n';
-        var quoteText = '"' + data.quote + '"\n';
+        var deckTypeText = data.type ? '* ' + data.type + '\n' : '';
+        var quoteText = data.quote ? '"' + data.quote + '"\n' : '';
         card.body(finishText + deckTypeText + quoteText + footer);
       },
       function(error) {
         console.log('Failed fetching Brawl data: ' + error);
-        card.body('There was an error! ' + error);
+        card.body('There was an error! Please try again later.\n' + error);
       }
     );
   } else {
