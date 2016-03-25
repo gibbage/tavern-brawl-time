@@ -1,3 +1,5 @@
+var Pebble = require('./pebble-api');
+
 function subscribe(topic) {
   Pebble.timelineSubscribe(
     topic,
@@ -23,6 +25,11 @@ function unsubscribe(topic) {
 }
 
 function subscribeToTopic(topic) {
+  if (!(Pebble && typeof Pebble.timelineSubscriptions  === 'function')) {
+    console.log('Timeline not supported by this pebble');
+    return;
+  }
+
   Pebble.timelineSubscriptions(
     function onSuccess(existingTopics) {
       var alreadySubscribed = false;
@@ -36,7 +43,7 @@ function subscribeToTopic(topic) {
           }
         });
       }
-      
+
       if (!alreadySubscribed) {
         subscribe(topic);
       }

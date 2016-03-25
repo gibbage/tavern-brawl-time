@@ -1,0 +1,36 @@
+{
+  "name": "tavern-brawl-time",
+  "version": "1.4.0",
+  "description": "Pebble watchapp that displays the details of the current Hearthstone Tavern Brawl.",
+  "main": "src/app.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "moment": "^2.11.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "chai": "^3.5.0",
+    "sinon": "^1.17.3"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gibbage/tavern-brawl-time.git"
+  },
+  "keywords": [
+    "hearthstone",
+    "tavern brawl",
+    "pebble",
+    "timeline"
+  ],
+  "author": "Shane Gibb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gibbage/tavern-brawl-time/issues"
+  },
+  "homepage": "https://github.com/gibbage/tavern-brawl-time#readme"
+}
