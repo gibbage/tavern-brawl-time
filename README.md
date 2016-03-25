@@ -7,8 +7,8 @@ you know when the current Brawl is ending or when the next one is starting.
 
 The data is being served out of an Amazon S3 bucket with Static Website Hosting
 enabled and the publishing of the data is handled by a separate repo
-[Tavern Brawl Time Publish](gibbage/tavern-brawl-time-publish). This repo is
-also responsible for updating the Pebble Timeline pins.
+[Tavern Brawl Time Publish](https://github.com/gibbage/tavern-brawl-time-publish).
+This repo is also responsible for updating the Pebble Timeline pins.
 
 This is my first Pebble app and its been lots of fun. I started building it
 using [Cloud Pebble](https://cloudpebble.net) which is great to get up and
@@ -28,12 +28,12 @@ npm install
 Setup a `vendor` directory and symlink.
 ```
 mkdir -p node_modules/vendor
-ln -sr node_modules/moment node_modules/vendor/moment
+ln -s ../moment node_modules/vendor/moment
 ```
 
-I discovered looking through the [Pebble.js](pebble/pebblejs) repo that it
-includes Moment.js at runtime, but expects in the `vendor/moment` directory.
-Hence the weird symlink stuff above.
+I discovered looking through the [Pebble.js](https://github.com/pebble/pebblejs)
+repo that it includes Moment.js at runtime, but expects in the `vendor/moment`
+directory. Hence the weird symlink stuff above.
 
 ## Running the tests
 
