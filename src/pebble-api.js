@@ -1,3 +1,3 @@
-var Pebble = (typeof Pebble !== 'undefined') ? Pebble : {} 
-module.exports = Pebble;
+var PebbleApi = typeof Pebble === 'object' ? Pebble : {};
+module.exports = PebbleApi;
 

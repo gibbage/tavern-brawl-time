@@ -1,7 +1,7 @@
-var Pebble = require('./pebble-api');
+var PebbleApi = require('./pebble-api');
 
 function subscribe(topic) {
-  Pebble.timelineSubscribe(
+  PebbleApi.timelineSubscribe(
     topic,
     function onSuccess() {
       console.log('Successfully subscribed to topic "' + topic + '".');
@@ -13,7 +13,7 @@ function subscribe(topic) {
 }
 
 function unsubscribe(topic) {
-  Pebble.timelineUnsubscribe(
+  PebbleApi.timelineUnsubscribe(
     topic,
     function onSuccess() {
       console.log('Successfully unsubscribed from topic "' + topic + '".');
@@ -25,12 +25,12 @@ function unsubscribe(topic) {
 }
 
 function subscribeToTopic(topic) {
-  if (!(Pebble && typeof Pebble.timelineSubscriptions  === 'function')) {
+  if (!(PebbleApi && typeof PebbleApi.timelineSubscriptions  === 'function')) {
     console.log('Timeline not supported by this pebble');
     return;
   }
 
-  Pebble.timelineSubscriptions(
+  PebbleApi.timelineSubscriptions(
     function onSuccess(existingTopics) {
       var alreadySubscribed = false;
 
