@@ -1,6 +1,6 @@
 {
   "name": "tavern-brawl-time",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Pebble watchapp that displays the details of the current Hearthstone Tavern Brawl.",
   "main": "src/app.js",
   "directories": {
