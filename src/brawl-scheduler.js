@@ -2,12 +2,12 @@ var moment = require('vendor/moment');
 
 var REGIONS = {
   'americas': {
-    start: { day: 'wednesday', hour: 17 },
-    finish: { day: 'monday', hour: 11 }
+    start: { day: 'wednesday', hour: 16 },
+    finish: { day: 'monday', hour: 10 }
   },
   'europe': {
-    start: { day: 'wednesday', hour: 21 },
-    finish: { day: 'monday', hour: 5 }
+    start: { day: 'wednesday', hour: 20 },
+    finish: { day: 'monday', hour: 4 }
   },
   'korea': {
     start: { day: 'wednesday', hour: 21 },
