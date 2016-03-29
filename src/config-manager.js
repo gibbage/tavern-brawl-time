@@ -32,10 +32,10 @@ function getRegion() {
 
 function addOnRegionChangeListener(callback) {
   if (typeof callback === 'function') {
-    console.log('Register change listener', callback.name);
+    console.log('Register change listener "' + callback.name + '".');
     onRegionChangeListeners.push(callback);
   }
-  console.log('How many listeners?', onRegionChangeListeners.length);
+  console.log('How many listeners? ' + onRegionChangeListeners.length);
 }
 
 module.exports = {
